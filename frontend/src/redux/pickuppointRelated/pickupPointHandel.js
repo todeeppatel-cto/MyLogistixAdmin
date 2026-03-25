@@ -32,6 +32,7 @@
 
 // 🔁 Updated Actions
 import axios from "axios";
+import { API_BASE_URL } from "../../constants/apiBaseUrl";
 import {
   request,
   success,
@@ -56,7 +57,7 @@ const authHeader = () => {
 export const getAllPickupPoints = () => async (dispatch) => { 
   dispatch(request());
   try {
-    const { data } = await axios.get(`${process.env.REACT_APP_BASE_URL}/allpickuppoints`);
+    const { data } = await axios.get(`${API_BASE_URL}/allpickuppoints`);
     dispatch(success(data));
   } catch (err) {
     dispatch(failure(err.response?.data?.error || "Something went wrong"));     
@@ -67,7 +68,7 @@ export const getAllPickupPoints = () => async (dispatch) => {
 export const createPickupPoint = (formData) => async (dispatch) => {
   dispatch(request());
   try {
-    await axios.post(`${process.env.REACT_APP_BASE_URL}/createpickuppointAdmin`, formData,  authHeader());   
+    await axios.post(`${API_BASE_URL}/createpickuppointAdmin`, formData,  authHeader());   
     dispatch(created());
     dispatch(getAllPickupPoints());
   } catch (err) {
@@ -81,7 +82,7 @@ export const createPickupPoint = (formData) => async (dispatch) => {
 export const updatePickupPoint = (id, updatedData) => async (dispatch) => {     
   dispatch(request());
   try {
-    await axios.put(`${process.env.REACT_APP_BASE_URL}/updatepoint/${id}`, updatedData);
+    await axios.put(`${API_BASE_URL}/updatepoint/${id}`, updatedData);
     dispatch(getAllPickupPoints());
   } catch (err) {
     dispatch(failure(err.response?.data?.error || "Failed to update"));
@@ -92,7 +93,7 @@ export const updatePickupPoint = (id, updatedData) => async (dispatch) => {
 export const deletePickupPoint = (id) => async (dispatch) => {
   dispatch(request());
   try {
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/deletepickuppoint/${id}`);
+    await axios.delete(`${API_BASE_URL}/deletepickuppoint/${id}`);
     dispatch(getAllPickupPoints());
   } catch (err) {
     dispatch(failure(err.response?.data?.error || "Failed to delete"));
@@ -103,7 +104,7 @@ export const deletePickupPoint = (id) => async (dispatch) => {
 export const togglePickupPointStatus = (id) => async (dispatch) => {
   dispatch(request());
   try {
-    await axios.patch(`${process.env.REACT_APP_BASE_URL}/status/${id}`);     
+    await axios.patch(`${API_BASE_URL}/status/${id}`);     
     dispatch(toggled()); // Optional
     dispatch(getAllPickupPoints());
   } catch (err) {

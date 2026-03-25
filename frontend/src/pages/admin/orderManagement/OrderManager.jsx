@@ -181,6 +181,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllCust } from "../../../redux/custRelated/custHandle";
+import { API_BASE_URL } from "../../../constants/apiBaseUrl";
 
 const OrderModule = () => {
   const [userId, setUserId] = useState("");
@@ -201,7 +202,7 @@ const OrderModule = () => {
   // STEP 1: Call calculation API
   const handleCalculate = async () => {
     try {
-      const res = await fetch("http://localhost:8000/createorder/calculation", {
+      const res = await fetch(`${API_BASE_URL}/createorder/calculation`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -236,7 +237,7 @@ const OrderModule = () => {
   // STEP 2: Create Order API
   const handleCreateOrder = async (calculationId) => {
     try {
-      const res = await fetch("http://localhost:8000/createorder/order", {
+      const res = await fetch(`${API_BASE_URL}/createorder/order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

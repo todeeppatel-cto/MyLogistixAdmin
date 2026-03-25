@@ -110,6 +110,7 @@
 
 
 import axios from "axios";
+import { API_BASE_URL } from "../../constants/apiBaseUrl";
 import {
   getRequest,
   getSuccess,
@@ -124,7 +125,7 @@ import {
 export const getAllCourierCompanies = () => async (dispatch) => {
   dispatch(getRequest());
   try {
-    const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/CourierCompanyList`);
+    const result = await axios.get(`${API_BASE_URL}/CourierCompanyList`);
     dispatch(getSuccess(result.data));
   } catch (error) {
     const errorMessage =
@@ -138,7 +139,7 @@ export const createCourierCompany = (formData) => async (dispatch) => {
   dispatch(getRequest());
   try {
     const result = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/CourierCompanyCreate`,
+      `${API_BASE_URL}/CourierCompanyCreate`,
       formData,
       {
         headers: {
@@ -167,7 +168,7 @@ export const updateCourierCompany = (id, formData) => async (dispatch) => {
   dispatch(getRequest());
   try {
     const result = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/CourierCompany/update/${id}`,
+      `${API_BASE_URL}/CourierCompany/update/${id}`,
       formData,
       {
         headers: {
@@ -205,7 +206,7 @@ export const updateCourierCompany = (id, formData) => async (dispatch) => {
 export const deleteCourierCompany = (id) => async (dispatch) => {
   dispatch(getRequest());
   try {
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/CourierCompany/${id}`);
+    await axios.delete(`${API_BASE_URL}/CourierCompany/${id}`);
     dispatch(deleteSuccess(id));
         return { type: 'cust/deleteSuccess' }; // ensure return type
 

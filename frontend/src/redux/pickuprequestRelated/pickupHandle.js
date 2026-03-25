@@ -43,6 +43,7 @@
 
 
 import axios from 'axios';
+import { API_BASE_URL } from '../../constants/apiBaseUrl';
 import {
   setLoading,
   setPickups,
@@ -50,7 +51,7 @@ import {
   pickupError,
 } from './pickupSlice';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = API_BASE_URL;
 
 // ✅ Fetch token and attach it to Authorization header
 const authHeader = () => {

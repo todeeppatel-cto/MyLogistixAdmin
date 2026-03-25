@@ -781,12 +781,12 @@ const ShowCourierRates = () => {
           {viewRate?.companiesLogo && (
             <Box mb={4} display="flex" justifyContent="center">
               <a
-                href={`http://localhost:8000/${viewRate.companiesLogo}`}
+                href={`/${viewRate.companiesLogo}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img
-                  src={`http://localhost:8000/${viewRate.companiesLogo}`}
+                  src={`/${viewRate.companiesLogo}`}
                   alt="Company Logo"
                   style={{
                     maxHeight: 100,
@@ -881,12 +881,12 @@ const ShowCourierRates = () => {
           {viewRate?.companiesLogo && (
             <Box mb={4} display="flex" justifyContent="center">
               <a
-                href={`http://localhost:8000/${viewRate.companiesLogo}`}
+                href={`/${viewRate.companiesLogo}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <img
-                  src={`http://localhost:8000/${viewRate.companiesLogo}`}
+                  src={`/${viewRate.companiesLogo}`}
                   alt="Company Logo"
                   style={{
                     maxHeight: 100,

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_BASE_URL } from "../../constants/apiBaseUrl";
 import {
   requestStart,
   requestSuccess,
@@ -10,7 +11,7 @@ import {
 export const calculateExtraCharge = (orderId, extraWeightKg) => async (dispatch) => {
   dispatch(requestStart());
   try {
-    const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/weight`, {
+    const res = await axios.post(`${API_BASE_URL}/weight`, {
       orderId,
       extraWeightKg,
     });
@@ -23,7 +24,7 @@ export const calculateExtraCharge = (orderId, extraWeightKg) => async (dispatch)
 // GET: Fetch All Reconciliations
 export const fetchAllExtraWeights = () => async (dispatch) => {
   try {
-    const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/reconciliation/list`);
+    const res = await axios.get(`${API_BASE_URL}/reconciliation/list`);
     dispatch(setAllExtraWeights(res.data));
   } catch (error) {
     console.error("Failed to fetch extra weights");
@@ -34,7 +35,7 @@ export const fetchAllExtraWeights = () => async (dispatch) => {
 export const deleteExtraWeightByOrderId = (orderId) => async (dispatch) => {
   dispatch(requestStart());
   try {
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/reconciliation/${orderId}`);
+    await axios.delete(`${API_BASE_URL}/reconciliation/${orderId}`);
     const result = await dispatch(fetchAllExtraWeights()); // return this promise
     dispatch(requestSuccess("Deleted successfully"));
     return result;

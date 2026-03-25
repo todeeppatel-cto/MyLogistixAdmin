@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { API_BASE_URL } from '../../constants/apiBaseUrl';
 
 export const calculateRate = createAsyncThunk('rate/calculate', async (data) => {
-  const res = await axios.post('http://localhost:8000/api/calculate', data);
+  const res = await axios.post(`${API_BASE_URL}/api/calculate`, data);
   return res.data;
 });
 

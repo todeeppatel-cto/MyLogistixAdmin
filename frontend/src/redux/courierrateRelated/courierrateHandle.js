@@ -1,6 +1,7 @@
 
 
 import axios from "axios";
+import { API_BASE_URL } from "../../constants/apiBaseUrl";
 import {
   getRequest,
   getSuccess,
@@ -15,7 +16,7 @@ export const getAllCourierRates = () => async (dispatch) => {
   dispatch(getRequest());
   try {
     const result = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/CourierRateList`
+      `${API_BASE_URL}/CourierRateList`
     );
     if (result.data.message) {
       dispatch(getFailed(result.data.message));
@@ -34,7 +35,7 @@ export const createCourierRate = (formData) => async (dispatch) => {
   dispatch(getRequest());
   try {
     const result = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/CourierRateCreate`,
+      `${API_BASE_URL}/CourierRateCreate`,
       formData
     );
 
@@ -77,7 +78,7 @@ export const updateCourierRate = (id, formData) => async (dispatch) => {
   dispatch(getRequest());
   try {
     const result = await axios.put(
-      `${process.env.REACT_APP_BASE_URL}/CourierRate/${id}`,
+      `${API_BASE_URL}/CourierRate/${id}`,
       formData,  // pass the FormData here
       {
         headers: {
@@ -104,7 +105,7 @@ export const updateCourierRate = (id, formData) => async (dispatch) => {
 export const deleteCourierRate = (id) => async (dispatch) => {
   dispatch(getRequest());
   try {
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/CourierRate/${id}`);
+    await axios.delete(`${API_BASE_URL}/CourierRate/${id}`);
     dispatch(getSuccess(id));
   } catch (error) {
     const errorMessage =
@@ -124,7 +125,7 @@ export const uploadCourierRatesCSV = (formData) => async (dispatch) => {
     };
 
     const response = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/UploadCourierRatesCSV`,
+      `${API_BASE_URL}/UploadCourierRatesCSV`,
       formData,
       config
     );

@@ -12,6 +12,7 @@ import MuiAlert from '@mui/material/Alert';
 import { MenuItem, TextField } from '@mui/material';
 import { getAllWallets } from '../../../redux/walletRelated/walletHandel';
 import SearchIcon from '@mui/icons-material/Search';
+import { API_BASE_URL } from "../../../constants/apiBaseUrl";
 
 
 
@@ -43,7 +44,7 @@ const Alert = React.forwardRef((props, ref) => (
   <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
 ));
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = API_BASE_URL;
 
 const ShowCourierCompanies = () => {
   const navigate = useNavigate();

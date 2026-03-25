@@ -1,12 +1,13 @@
 import axios from "axios";
 import { getRequest, getSuccess, getFailed, getError, updateSuccess } from "./noticeSlice";
+import { API_BASE_URL } from "../../constants/apiBaseUrl";
 
 // 🟢 Get All Notices
 export const getAllNotices = (id, address) => async (dispatch) => {
   dispatch(getRequest());
   try {
     const result = await axios.get(
-      `${process.env.REACT_APP_BASE_URL}/${address}List/${id}`
+      `${API_BASE_URL}/${address}List/${id}`
     );
     if (result.data.message) {
       dispatch(getFailed(result.data.message));
@@ -25,7 +26,7 @@ export const updateNotice = (id, updatedData) => async (dispatch) => {
   dispatch(getRequest());
   try {
     const result = await axios.put(
-      `${process.env.REACT_APP_BASE_URL}/Notice/${id}`,
+      `${API_BASE_URL}/Notice/${id}`,
       updatedData
     );
     if (result.data) {

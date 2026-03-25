@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_BASE_URL } from '../../constants/apiBaseUrl';
 import {
   setAppointments,
   setLoading,
@@ -24,7 +25,7 @@ export const addAppointment = (deliveryData) => async (dispatch) => {
   dispatch(getRequest());
   try {
     const result = await axios.post(
-      `${process.env.REACT_APP_BASE_URL}/addappointmentAdmin`,
+      `${API_BASE_URL}/addappointmentAdmin`,
       deliveryData
     );
     if (result.data) {
@@ -46,7 +47,7 @@ export const addAppointment = (deliveryData) => async (dispatch) => {
 export const getAllAppointments = () => async (dispatch) => {
   try {
     dispatch(setLoading(true));
-    const res = await axios.get('http://localhost:8000/allappointments');
+    const res = await axios.get(`${API_BASE_URL}/allappointments`);
     dispatch(setAppointments(res.data));
   } catch (error) {
     console.error('Get Appointments Error:', error);
@@ -57,7 +58,7 @@ export const getAllAppointments = () => async (dispatch) => {
 
 export const deleteAppointment = (id) => async (dispatch) => {
   try {
-    await axios.delete(`http://localhost:8000/deleteappointment/${id}`);
+    await axios.delete(`${API_BASE_URL}/deleteappointment/${id}`);
     dispatch(getAllAppointments());
   } catch (error) {
     console.error('Delete Appointment Error:', error);
@@ -68,7 +69,7 @@ export const deleteAppointment = (id) => async (dispatch) => {
 export const getAllOrders = () => async (dispatch) => {
   try {
     dispatch(setLoading(true));
-    const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/allorders`);
+    const res = await axios.get(`${API_BASE_URL}/allorders`);
     dispatch(setOrders(res.data));
     dispatch(setLoading(false));
   } catch (error) {

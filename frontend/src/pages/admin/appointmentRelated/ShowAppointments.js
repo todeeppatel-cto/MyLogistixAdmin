@@ -187,7 +187,7 @@ const ShowAppointments = () => {
                 <Typography>
                   <strong>PO Copy:</strong>{' '}
                   <a
-                    href={`http://localhost:8000/${selected.poCopy}`}
+                    href={`/${selected.poCopy}`}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -271,7 +271,7 @@ const ShowAppointments = () => {
                     <Typography variant="subtitle2" color="text.secondary">PO Copy</Typography>
                     <Typography variant="body1" fontWeight={500}>
                       <a
-                        href={`http://localhost:8000/${selected.poCopy}`}
+                        href={`/${selected.poCopy}`}
                         target="_blank"
                         rel="noreferrer"
                         style={{ color: '#1976d2', textDecoration: 'none', fontWeight: 600 }}

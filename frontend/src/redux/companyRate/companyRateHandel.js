@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_BASE_URL } from "../../constants/apiBaseUrl";
 
-const API_URL = "http://localhost:8000"; 
+const API_URL = API_BASE_URL; 
 
 // Upload company + CSV
 export const uploadCompanyRate = createAsyncThunk(

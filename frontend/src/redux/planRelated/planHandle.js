@@ -1,11 +1,12 @@
 import axios from "axios";
 import { getRequest, getSuccess, getFailed, getError, updateSuccess } from "./planSlice";
+import { API_BASE_URL } from "../../constants/apiBaseUrl";
 
 // 🟢 Get All Plans (no id param here)
 export const getAllPlans = () => async (dispatch) => {
   dispatch(getRequest());
   try {
-    const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/PlanList`);
+    const result = await axios.get(`${API_BASE_URL}/PlanList`);
     
     // ✅ Only treat as error if success is false or result.data.error exists
     if (result.data.success === false || result.data.error) {
@@ -25,7 +26,7 @@ export const getAllPlans = () => async (dispatch) => {
 export const createPlan = (planData) => async (dispatch) => {
   dispatch(getRequest());
   try {
-    const result = await axios.post(`${process.env.REACT_APP_BASE_URL}/PlanCreate`, planData);
+    const result = await axios.post(`${API_BASE_URL}/PlanCreate`, planData);
     if (result.data) {
       dispatch(getSuccess(result.data));
       return result.data; // Return created plan data if needed
@@ -45,7 +46,7 @@ export const createPlan = (planData) => async (dispatch) => {
 export const updatePlan = (id, updatedData) => async (dispatch) => {
   dispatch(getRequest());
   try {
-    const result = await axios.put(`${process.env.REACT_APP_BASE_URL}/Plan/${id}`, updatedData);
+    const result = await axios.put(`${API_BASE_URL}/Plan/${id}`, updatedData);
     if (result.data) {
       dispatch(updateSuccess({ id, updatedData: result.data }));
       return result.data;  // return success data
@@ -65,7 +66,7 @@ export const updatePlan = (id, updatedData) => async (dispatch) => {
 export const deletePlan = (id) => async (dispatch) => {
   dispatch(getRequest());
   try {
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/Plan/${id}`);
+    await axios.delete(`${API_BASE_URL}/Plan/${id}`);
     dispatch(getSuccess("Plan deleted successfully!"));
   } catch (error) {
     const errorMessage =
@@ -78,7 +79,7 @@ export const deletePlan = (id) => async (dispatch) => {
 export const deleteAllPlans = () => async (dispatch) => {
   dispatch(getRequest());
   try {
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/Plans`);
+    await axios.delete(`${API_BASE_URL}/Plans`);
     dispatch(getSuccess("All plans deleted successfully!"));
   } catch (error) {
     const errorMessage =

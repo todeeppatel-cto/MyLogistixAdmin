@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/[...slug].js", "use": "@vercel/node" },
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "build" }
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/[...slug].js" },
+    { "src": "/uploads/(.*)", "dest": "/api/[...slug].js" },
+    { "src": "/invoices/(.*)", "dest": "/api/[...slug].js" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
+

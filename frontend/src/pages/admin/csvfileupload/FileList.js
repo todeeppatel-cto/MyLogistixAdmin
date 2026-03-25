@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "../../../constants/apiBaseUrl";
 
 const FileList = ({ onFileSelect }) => {
   const [files, setFiles] = useState([]);
@@ -10,7 +11,7 @@ const FileList = ({ onFileSelect }) => {
 
   const fetchFiles = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/files");
+      const res = await axios.get(`${API_BASE_URL}/files`);
       setFiles(res.data);
     } catch (err) {
       console.error(err);

@@ -6,6 +6,7 @@ import {
   fetchCompanies,
 } from "../../../redux/companyRate/companyRateHandel";
 import { clearMessages } from "../../../redux/companyRate/companyRateSlice";
+import { API_BASE_URL } from "../../../constants/apiBaseUrl";
 
 const UploadCompanyRates = () => {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const UploadCompanyRates = () => {
 
   const handleViewRates = async (company) => {
     try {
-      const response = await fetch(`http://localhost:8000/view/${company._id}`);
+      const response = await fetch(`${API_BASE_URL}/view/${company._id}`);
       const data = await response.json();
 
       if (!data.rates || data.rates.length === 0) {

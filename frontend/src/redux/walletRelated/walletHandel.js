@@ -129,6 +129,7 @@
 
 
 import axios from "axios";
+import { API_BASE_URL } from "../../constants/apiBaseUrl";
 import {
   setLoading,
   rechargeSuccess,
@@ -139,7 +140,7 @@ import {
   operationFailed,
 } from "./walletSlice";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:8000";
+const BASE_URL = API_BASE_URL;
 
 // ADMIN & CLIENT: recharge
 export const rechargeWallet = ({ userId, userModel, amount, description }) => async (dispatch) => {

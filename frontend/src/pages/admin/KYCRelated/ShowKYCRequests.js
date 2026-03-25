@@ -310,7 +310,7 @@ const ShowKYCRequests = () => {
                     <td>{kyc.organizationType}</td>
                     <td>
                       <a
-                        href={`http://localhost:8000/${kyc.documentOne.filePath}`}
+                        href={`/${kyc.documentOne.filePath}`}
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -319,7 +319,7 @@ const ShowKYCRequests = () => {
                     </td>
                     <td>
                       <a
-                        href={`http://localhost:8000/${kyc.documentTwo.filePath}`}
+                        href={`/${kyc.documentTwo.filePath}`}
                         target="_blank"
                         rel="noreferrer"
                       >

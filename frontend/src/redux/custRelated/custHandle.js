@@ -86,6 +86,7 @@
 
 
 import axios from "axios";
+import { API_BASE_URL } from "../../constants/apiBaseUrl";
 import {
   getRequest,
   getSuccess,
@@ -98,7 +99,7 @@ import {
 export const getAllCust = (id) => async (dispatch) => {
   dispatch(getRequest());
   try {
-    const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/CustList/${id}`);
+    const result = await axios.get(`${API_BASE_URL}/CustList/${id}`);
     if (result.data.message) {
       dispatch(getFailed(result.data.message));
     } else {
@@ -134,7 +135,7 @@ export const getAllCust = (id) => async (dispatch) => {
 export const createCust = (custData) => async (dispatch) => {
   dispatch(getRequest());
   try {
-    const result = await axios.post(`${process.env.REACT_APP_BASE_URL}/CustCreate`, custData);
+    const result = await axios.post(`${API_BASE_URL}/CustCreate`, custData);
     if (result.data) {
       dispatch(getSuccess(result.data));  // this can be message or data from backend
     } else {
@@ -154,7 +155,7 @@ export const createCust = (custData) => async (dispatch) => {
 export const updateCust = (id, updatedData) => async (dispatch) => {
   dispatch(getRequest());
   try {
-    const result = await axios.put(`${process.env.REACT_APP_BASE_URL}/Custs/${id}`, updatedData);
+    const result = await axios.put(`${API_BASE_URL}/Custs/${id}`, updatedData);
     if (result.data) {
       dispatch(updateSuccess({ id, updatedData: result.data }));
       return { success: true, data: result.data };
@@ -173,7 +174,7 @@ export const updateCust = (id, updatedData) => async (dispatch) => {
 export const deleteCust = (id) => async (dispatch) => {
   dispatch(getRequest());
   try {
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/Cust/${id}`);
+    await axios.delete(`${API_BASE_URL}/Cust/${id}`);
     dispatch(getSuccess(id));
   } catch (error) {
     dispatch(
@@ -188,7 +189,7 @@ export const deleteCust = (id) => async (dispatch) => {
 export const deleteAllCust = (id) => async (dispatch) => {
   dispatch(getRequest());
   try {
-    await axios.delete(`${process.env.REACT_APP_BASE_URL}/Custs/${id}`);
+    await axios.delete(`${API_BASE_URL}/Custs/${id}`);
     dispatch(getSuccess("All customers deleted"));
   } catch (error) {
     dispatch(

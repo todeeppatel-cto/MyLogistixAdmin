@@ -1,6 +1,7 @@
 // redux/orderRelated/orderHandel.js
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { API_BASE_URL } from '../../constants/apiBaseUrl';
 
 // 1. Calculate courier rates
 export const calculateRates = createAsyncThunk(   
@@ -8,7 +9,7 @@ export const calculateRates = createAsyncThunk(
   async (orderDetails, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/calculate-rates`,  
+        `${API_BASE_URL}/calculate-rates`,  
         orderDetails
       );
       return response.data;
@@ -26,7 +27,7 @@ export const createOrder = createAsyncThunk(
   async (orderData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/create-order-admin`, 
+        `${API_BASE_URL}/create-order-admin`, 
         orderData
       );
       return response.data;
@@ -43,7 +44,7 @@ export const getAllOrders = createAsyncThunk(
   'order/getAllOrders',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/orderList`);
+      const response = await axios.get(`${API_BASE_URL}/orderList`);
       return response.data;
     } catch (error) {
       return rejectWithValue(
@@ -59,7 +60,7 @@ export const updateOrder = createAsyncThunk(
   async ({ id, updatedData }, { rejectWithValue }) => {
     try {
       const response = await axios.put(
-        `${process.env.REACT_APP_BASE_URL}/order/${id}`,
+        `${API_BASE_URL}/order/${id}`,
         updatedData
       );
       return { id, updatedOrder: response.data.order };
@@ -76,7 +77,7 @@ export const deleteOrder = createAsyncThunk(
   'order/deleteOrder',
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`http://localhost:8000/order/${id}`);   //await axios.delete(`http://localhost:8000/order/${id}`);
+      await axios.delete(`${API_BASE_URL}/order/${id}`);
 
       return id;
     } catch (error) {
@@ -92,7 +93,7 @@ export const fetchOrderCount = createAsyncThunk(
   'order/fetchOrderCount',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:8000/myorder/count`);
+      const response = await axios.get(`${API_BASE_URL}/myorder/count`);
       return response.data; 
     } catch (error) {
       return rejectWithValue(
@@ -108,7 +109,7 @@ export const updateOrderStatus = createAsyncThunk(
   async ({ id, status }, { rejectWithValue }) => {
     try {
       const response = await axios.patch(
-        `${process.env.REACT_APP_BASE_URL}/order/${id}/status`,
+        `${API_BASE_URL}/order/${id}/status`,
         { status }
       );
       return response.data.order;
@@ -127,7 +128,7 @@ export const fetchDashboardStats = createAsyncThunk(
   "order/fetchDashboardStats",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get("http://localhost:8000/dashboard-stats");
+      const { data } = await axios.get(`${API_BASE_URL}/dashboard-stats`);
       return data;
     } catch (error) {
       return rejectWithValue("Dashboard Stats Error");

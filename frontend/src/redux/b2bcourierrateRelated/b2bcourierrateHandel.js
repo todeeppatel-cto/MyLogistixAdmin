@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_BASE_URL } from '../../constants/apiBaseUrl';
 import {
   getRequest,
   getSuccess,
@@ -8,12 +9,12 @@ import {
   deleteSuccess
 } from './b2bcourierrateSlice';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = API_BASE_URL;
 
 export const getAllCourierRates = () => async (dispatch) => {
   dispatch(getRequest());
   try {
-    const res = await axios.get('http://localhost:8000/b2b-rates');
+    const res = await axios.get(`${API_URL}/b2b-rates`);
     dispatch(getSuccess(res.data));
   } catch (err) {
     dispatch(getFailed(err.message));

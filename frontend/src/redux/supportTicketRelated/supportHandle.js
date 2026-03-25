@@ -85,6 +85,7 @@
 
 // src/redux/supportTicketRelated/supportHandle.js
 import axios from "axios";
+import { API_BASE_URL } from "../../constants/apiBaseUrl";
 import {
   setTickets,
   setCustomers,
@@ -92,7 +93,7 @@ import {
   setLoading,
 } from "./supportSlice";
 
-const API = process.env.REACT_APP_BASE_URL || "http://localhost:8000";
+const API = API_BASE_URL;
 
 // ✅ Create Support Ticket
 export const createSupportTicket = (formData) => async (dispatch) => {
